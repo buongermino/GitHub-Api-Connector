@@ -3,9 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitHubApiConnector.Api", "GitHubApiConnector\GitHubApiConnector.Api.csproj", "{D227BE43-051F-4A44-AE53-9F18B99B09FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GitHubApiConnector.Api", "GitHubApiConnector\GitHubApiConnector.Api.csproj", "{D227BE43-051F-4A44-AE53-9F18B99B09FE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9ACC4DA1-D1F6-4864-BFBF-6B9EC9C9422F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitHubApiConnector.Infrastructure", "GitHubApiConnector.Infrastructure\GitHubApiConnector.Infrastructure.csproj", "{266951D5-2816-47F9-8D6A-A237ADBBDFA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitHubApiConnector.Domain", "GitHubApiConnector.Domain\GitHubApiConnector.Domain.csproj", "{EF303104-ECC1-4319-A8CF-470291C5B69A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitHubApiConnector.UseCases", "GitHubApiConnector.UseCases\GitHubApiConnector.UseCases.csproj", "{ACB39BF9-EB89-4CC2-ABC2-72CE7314CBDF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,12 +23,27 @@ Global
 		{D227BE43-051F-4A44-AE53-9F18B99B09FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D227BE43-051F-4A44-AE53-9F18B99B09FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D227BE43-051F-4A44-AE53-9F18B99B09FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{266951D5-2816-47F9-8D6A-A237ADBBDFA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{266951D5-2816-47F9-8D6A-A237ADBBDFA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{266951D5-2816-47F9-8D6A-A237ADBBDFA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{266951D5-2816-47F9-8D6A-A237ADBBDFA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF303104-ECC1-4319-A8CF-470291C5B69A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF303104-ECC1-4319-A8CF-470291C5B69A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF303104-ECC1-4319-A8CF-470291C5B69A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF303104-ECC1-4319-A8CF-470291C5B69A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACB39BF9-EB89-4CC2-ABC2-72CE7314CBDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACB39BF9-EB89-4CC2-ABC2-72CE7314CBDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACB39BF9-EB89-4CC2-ABC2-72CE7314CBDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACB39BF9-EB89-4CC2-ABC2-72CE7314CBDF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{D227BE43-051F-4A44-AE53-9F18B99B09FE} = {9ACC4DA1-D1F6-4864-BFBF-6B9EC9C9422F}
+		{266951D5-2816-47F9-8D6A-A237ADBBDFA9} = {9ACC4DA1-D1F6-4864-BFBF-6B9EC9C9422F}
+		{EF303104-ECC1-4319-A8CF-470291C5B69A} = {9ACC4DA1-D1F6-4864-BFBF-6B9EC9C9422F}
+		{ACB39BF9-EB89-4CC2-ABC2-72CE7314CBDF} = {9ACC4DA1-D1F6-4864-BFBF-6B9EC9C9422F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {18AEA1FB-B6A1-4E6F-9ADE-4BB790F82BAC}
