@@ -11,7 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\GitHubApiConnector.Infrastructure\GitHubApiConnector.Infrastructure.csproj" />
+    <ProjectReference Include="..\GitHubApiConnector.UseCases\GitHubApiConnector.UseCases.csproj" />
   </ItemGroup>
 
 </Project>
