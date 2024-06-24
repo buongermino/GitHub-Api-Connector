@@ -1,6 +1,8 @@
 using GitHubApiConnector.Infrastructure;
+using GitHubApiConnector.Infrastructure.Data;
 using GitHubApiConnector.Infrastructure.Interfaces;
 using GitHubApiConnector.UseCases;
+using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +20,7 @@ builder.Services.AddControllers()
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddInfrastructureModule(builder.Configuration);
 
 builder.Services.AddHttpClient<IGitHubApiClient, GitHubApiClient>();
 builder.Services.AddScoped<IFetchAndSaveRepositoriesUseCase, FetchAndSaveRepositoriesUseCase>();

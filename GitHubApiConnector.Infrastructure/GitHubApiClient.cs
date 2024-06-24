@@ -13,7 +13,7 @@ public class GitHubApiClient(HttpClient httpClient) : IGitHubApiClient
         SetHeaders(httpClient);
         var repositories = new GitHubRepositoryResponse();
 
-        var response = await httpClient.GetAsync($"/search/repositories?q=language:{languages.First()}");
+        var response = await httpClient.GetAsync($"/search/repositories?q=language:{languages.First()}&per_page=10&page=1");
 
         if (response.IsSuccessStatusCode) 
         {
