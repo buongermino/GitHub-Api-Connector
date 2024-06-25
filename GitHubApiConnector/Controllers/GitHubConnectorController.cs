@@ -16,9 +16,12 @@ public class GitHubConnectorController : ControllerBase
     }
 
     [HttpGet("all")]
-    public async Task<IActionResult> ListRepositories()
+    public async Task<IActionResult> ListRepositories([FromServices] IGetAllGitHubRepositoriesUseCase getAllGitHubRepositoriesUseCase,
+                                                        string filterByLanguage = "", int pageNumber = 1, int pageSize = 10)
     {
-        return NoContent();
+        var repositories = await getAllGitHubRepositoriesUseCase.Execute(filterByLanguage, pageNumber, pageSize);
+
+        return Ok(repositories);
     }
 
     [HttpGet("{id}")]

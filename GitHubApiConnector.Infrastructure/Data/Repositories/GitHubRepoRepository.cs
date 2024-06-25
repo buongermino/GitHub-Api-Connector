@@ -18,7 +18,9 @@ public class GitHubRepoRepository(GitHubRepoContext context) : IGitHubRepoReposi
 
     public async Task<List<GitHubRepo>> GetAllAsync()
     {
-        return await _context.GitHubRepos.ToListAsync();
+        return await _context.GitHubRepos
+            .Include(p => p.Owner)
+            .ToListAsync();
     }
 
     public Task<GitHubRepo> GetByIdAsync(Guid id)
