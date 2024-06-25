@@ -17,13 +17,17 @@ public class ItemResponse
     public OwnerResponse Owner { get; set; }
     public string Description { get; set; }
     public string Url { get; set; }
-    public string GitUrl { get; set; }
-    public string SshUrl { get; set; }
-    public string CloneUrl { get; set; }
     public int Size { get; set; }
     public int Watchers { get; set; }
     public int Forks { get; set; }
     public string Language { get; set; }
+
+    [JsonPropertyName("git_url")]
+    public string GitUrl { get; set; }
+    [JsonPropertyName("ssh_url")]
+    public string SshUrl { get; set; }
+    [JsonPropertyName("clone_url")]
+    public string CloneUrl { get; set; }
 
     [JsonPropertyName("full_name")]
     public string FullName { get; set; }
