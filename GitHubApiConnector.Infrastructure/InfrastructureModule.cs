@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using GitHubApiConnector.Infrastructure.Data;
+using GitHubApiConnector.Domain.IRepository;
+using GitHubApiConnector.Infrastructure.Data.Repositories;
 
 namespace GitHubApiConnector.Infrastructure;
 
@@ -11,6 +13,7 @@ public static class InfrastructureModule
     public static void AddInfrastructureModule(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContexts(configuration);
+        services.AddScoped<IGitHubRepoRepository, GitHubRepoRepository>();
     }
 
     public static IServiceCollection AddDbContexts(this IServiceCollection services, IConfiguration configuration)
