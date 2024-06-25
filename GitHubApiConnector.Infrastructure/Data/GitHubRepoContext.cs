@@ -2,6 +2,7 @@
 using GitHubApiConnector.Domain.SeedWork;
 using GitHubApiConnector.Infrastructure.Data.EntityConfiguration;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace GitHubApiConnector.Infrastructure.Data;
 
@@ -25,7 +26,12 @@ public class GitHubRepoContext : DbContext, IUnitOfWork
     {
         if (!optionsBuilder.IsConfigured)
         {
-            optionsBuilder.UseSqlServer("Data Source=NBQFC-1M38ST3;Database=github_repos_db;User ID=sa;Password=Fcamara@2024;Trust Server Certificate=True");
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+               .SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../GitHubApiConnector"))
+               .AddJsonFile("appsettings.json")
+               .Build();
+            var connectionString = configuration.GetConnectionString("DefaultConnection");
+            optionsBuilder.UseSqlServer(connectionString);
         }
     }
 

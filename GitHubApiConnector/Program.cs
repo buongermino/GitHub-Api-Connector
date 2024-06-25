@@ -1,8 +1,6 @@
 using GitHubApiConnector.Infrastructure;
-using GitHubApiConnector.Infrastructure.Data;
 using GitHubApiConnector.Infrastructure.Interfaces;
 using GitHubApiConnector.UseCases;
-using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
