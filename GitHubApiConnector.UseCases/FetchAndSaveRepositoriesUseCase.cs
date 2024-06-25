@@ -14,16 +14,19 @@ public class FetchAndSaveRepositoriesUseCase(IGitHubApiClient gitHubApiClient, I
 {
     public async Task Execute()
     {
-        var languages = new List<string>() { "csharp", "java", "angular", "golang", "kotlin" };
+        var languages = new List<string>() { "csharp", "java", "javascript", "golang", "kotlin" };
 
-        var repos = await gitHubApiClient.FetchRepositories(languages);
+        var reposResponse = await gitHubApiClient.FetchRepositories(languages);
 
         var reposToSave = new List<GitHubRepo>();
 
-        foreach (var repo in repos.Items) 
+        foreach (var repository in reposResponse) 
         {
-            var entity = MapResponseToEntity(repo);
-            reposToSave.Add(entity);
+            foreach (var repo in repository.Items)
+            {
+                var entity = MapResponseToEntity(repo);
+                reposToSave.Add(entity);
+            }
         }
 
         await SaveRepositoryIfNotAlreadyExists(reposToSave);

@@ -2,5 +2,5 @@
 
 public interface IGitHubApiClient
 {
-    Task<GitHubRepositoryResponse> FetchRepositories(List<string> languages);
+    Task<List<GitHubRepositoryResponse>> FetchRepositories(List<string> languages);
 }

@@ -8,18 +8,23 @@ public class GitHubApiClient(HttpClient httpClient) : IGitHubApiClient
     private static readonly JsonSerializerOptions _jsonSerializerOptions = new() { PropertyNameCaseInsensitive = true };
 
 
-    public async Task<GitHubRepositoryResponse> FetchRepositories(List<string> languages)
+    public async Task<List<GitHubRepositoryResponse>> FetchRepositories(List<string> languages)
     {
         SetHeaders(httpClient);
-        var repositories = new GitHubRepositoryResponse();
+        var repositoriesPerRequest = new GitHubRepositoryResponse();
+        var repositories = new List<GitHubRepositoryResponse>();
 
-        var response = await httpClient.GetAsync($"/search/repositories?q=language:{languages.First()}&per_page=10&page=1");
-
-        if (response.IsSuccessStatusCode) 
+        foreach (var language in languages)
         {
-            var content = await response.Content.ReadAsStringAsync();
+            var response = await httpClient.GetAsync($"/search/repositories?q=language:{language}&per_page=10&page=1");
 
-            repositories = JsonSerializer.Deserialize<GitHubRepositoryResponse>(content, _jsonSerializerOptions)!;
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+
+                repositoriesPerRequest = JsonSerializer.Deserialize<GitHubRepositoryResponse>(content, _jsonSerializerOptions)!;
+            }
+            repositories.Add(repositoriesPerRequest);
         }
 
         return repositories;
