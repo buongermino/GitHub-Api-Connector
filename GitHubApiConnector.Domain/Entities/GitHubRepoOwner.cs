@@ -1,4 +1,5 @@
 ﻿using GitHubApiConnector.Domain.SeedWork;
+using System.Text.Json.Serialization;
 
 namespace GitHubApiConnector.Domain.Entities;
 
@@ -15,5 +16,6 @@ public class GitHubRepoOwner : Entity
     public string OrganizationsUrl { get; set; }
     public string Type { get; set; }
 
+    [JsonIgnore]
     public List<GitHubRepo> Repos { get; set; }
 }
