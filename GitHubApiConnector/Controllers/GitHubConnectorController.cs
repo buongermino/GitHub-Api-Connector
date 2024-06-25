@@ -10,9 +10,9 @@ public class GitHubConnectorController : ControllerBase
     [HttpGet("fetch-and-save")]
     public async Task<IActionResult> FetchAndSaveRepositories([FromServices] IFetchAndSaveRepositoriesUseCase fetchAndSaveRepositoriesUseCase)
     {
-        var respositories = await fetchAndSaveRepositoriesUseCase.Execute();
+        await fetchAndSaveRepositoriesUseCase.Execute();
 
-        return Ok(respositories);
+        return Ok();
     }
 
     [HttpGet("all")]
