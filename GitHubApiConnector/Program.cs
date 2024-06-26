@@ -23,6 +23,7 @@ builder.Services.AddInfrastructureModule(builder.Configuration);
 builder.Services.AddHttpClient<IGitHubApiClient, GitHubApiClient>();
 builder.Services.AddScoped<IFetchAndSaveRepositoriesUseCase, FetchAndSaveRepositoriesUseCase>();
 builder.Services.AddScoped<IGetAllGitHubRepositoriesUseCase, GetAllGitHubRepositoriesUseCase>();
+builder.Services.AddScoped<IGetGitHubRepositoryByIdUseCase, GetGitHubRepositoryByIdUseCase>();
 
 var app = builder.Build();
 
