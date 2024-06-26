@@ -23,10 +23,10 @@ public class GitHubRepoRepository(GitHubRepoContext context) : IGitHubRepoReposi
             .ToListAsync();
     }
 
-    public Task<GitHubRepo> GetByIdAsync(Guid id)
+    public async Task<GitHubRepo> GetByIdAsync(Guid id)
     {
-        throw new NotImplementedException();
-    }
-
-  
+        return await _context.GitHubRepos
+            .Include(repo => repo.Owner)
+            .FirstOrDefaultAsync(repo => repo.Id == id)!;
+    }  
 }
