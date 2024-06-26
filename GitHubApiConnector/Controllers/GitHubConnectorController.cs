@@ -25,7 +25,7 @@ public class GitHubConnectorController : ControllerBase
                         Description = "Returns a list of repositories, per pagination (deafult value is 10) and can be used a language as filter. If the specified language does not exists, no repos will be listed")]
     [SwaggerResponse(StatusCodes.Status200OK, "Returns a list of repositories, per pagination (deafult value is 10)", typeof(List<GitHubRepositoryDTO>))]
     [SwaggerResponse(StatusCodes.Status204NoContent, "Returns no content if there is no repository in database")]
-    public async Task<IActionResult> ListRepositories([FromServices] IGetAllGitHubRepositoriesUseCase getAllGitHubRepositoriesUseCase,
+    public async Task<IActionResult> GetRepositories([FromServices] IGetAllGitHubRepositoriesUseCase getAllGitHubRepositoriesUseCase,
                                                         string filterByLanguage = "", int pageNumber = 1, int pageSize = 10)
     {
         var repositories = await getAllGitHubRepositoriesUseCase.Execute(filterByLanguage, pageNumber, pageSize);
@@ -41,7 +41,7 @@ public class GitHubConnectorController : ControllerBase
     [SwaggerResponse(StatusCodes.Status200OK, "Returns the request repository", typeof(GitHubRepositoryDetailsDTO))]
     [SwaggerResponse(StatusCodes.Status204NoContent, "Returns no content if the repository could not be found")]
     [SwaggerResponse(StatusCodes.Status400BadRequest, "If the Id is invalid")]
-    public async Task<IActionResult> ListRepositoryById([FromServices] IGetGitHubRepositoryByIdUseCase getGitHubRepositoryByIdUseCase, Guid id)
+    public async Task<IActionResult> GetRepositoryById([FromServices] IGetGitHubRepositoryByIdUseCase getGitHubRepositoryByIdUseCase, Guid id)
     {
         if (id == Guid.Empty) return BadRequest();
 
