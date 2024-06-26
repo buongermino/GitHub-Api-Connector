@@ -1,19 +1,23 @@
-﻿using GitHubApiConnector.Domain.Entities;
+﻿using AutoMapper;
+using GitHubApiConnector.Domain.Entities;
 using GitHubApiConnector.Domain.IRepository;
+using GitHubApiConnector.UseCases.DTOs;
 
 namespace GitHubApiConnector.UseCases;
 
 public interface IGetGitHubRepositoryByIdUseCase
 {
-    Task<GitHubRepo> Execute(Guid id);
+    Task<GitHubRepositoryDetailsDTO> Execute(Guid id);
 }
 
-public class GetGitHubRepositoryByIdUseCase(IGitHubRepoRepository repository) : IGetGitHubRepositoryByIdUseCase
+public class GetGitHubRepositoryByIdUseCase(IGitHubRepoRepository repository, IMapper mapper) : IGetGitHubRepositoryByIdUseCase
 {
-    public async Task<GitHubRepo> Execute(Guid id)
+    public async Task<GitHubRepositoryDetailsDTO> Execute(Guid id)
     {
         var repo = await repository.GetByIdAsync(id);
 
-        return repo;
+        var repositoryDetailsResponse = mapper.Map<GitHubRepositoryDetailsDTO>(repo);
+
+        return repositoryDetailsResponse;
     }
 }

@@ -1,17 +1,19 @@
-﻿using GitHubApiConnector.Domain.Entities;
+﻿using AutoMapper;
+using GitHubApiConnector.Domain.Entities;
 using GitHubApiConnector.Domain.IRepository;
+using GitHubApiConnector.UseCases.DTOs;
 
 namespace GitHubApiConnector.UseCases;
 
 public interface IGetAllGitHubRepositoriesUseCase 
 {
-    Task<List<GitHubRepo>> Execute(string filterByLanguage, int pageNumber, int pageSize);
+    Task<List<GitHubRepositoryDTO>> Execute(string filterByLanguage, int pageNumber, int pageSize);
 }
 
 
-public class GetAllGitHubRepositoriesUseCase(IGitHubRepoRepository repository) : IGetAllGitHubRepositoriesUseCase
+public class GetAllGitHubRepositoriesUseCase(IGitHubRepoRepository repository, IMapper mapper) : IGetAllGitHubRepositoriesUseCase
 {
-    public async Task<List<GitHubRepo>> Execute(string filterByLanguage, int pageNumber, int pageSize)
+    public async Task<List<GitHubRepositoryDTO>> Execute(string filterByLanguage, int pageNumber, int pageSize)
     {
         if (pageNumber <= 0) pageNumber = 1;
         if (pageSize <= 0) pageSize = 10;
@@ -31,7 +33,9 @@ public class GetAllGitHubRepositoriesUseCase(IGitHubRepoRepository repository) :
                                            .Take(pageSize)
                                            .ToList();
 
-        return paginatedRepos;
+        var paginatedReposResponse = mapper.Map<List<GitHubRepositoryDTO>>(paginatedRepos);
+
+        return paginatedReposResponse;
     }
 }
 
